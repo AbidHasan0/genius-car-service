@@ -5,6 +5,8 @@ import About from './Pages/About/About';
 import Experts from './Pages/Home/Experts/Experts';
 import Home from './Pages/Home/Home/Home';
 import Services from './Pages/Home/Services/Services';
+import Login from './Pages/Login/Login/Login';
+import Register from './Pages/Login/Register/Register';
 import ServiceDetail from './Pages/ServiceDetail/ServiceDetail';
 import Footer from './Shared/Footer/Footer';
 import Header from './Shared/Header/Header';
@@ -20,6 +22,8 @@ function App() {
         <Route path='/about' element={<About></About>}></Route>
         <Route path='/experts' element={<Experts></Experts>}></Route>
         <Route path='/services' element={<Services></Services>}></Route>
+        <Route path='/login' element={<Login></Login>}></Route>
+        <Route path='/register' element={<Register></Register>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
 
       </Routes>
