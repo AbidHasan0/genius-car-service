@@ -2,9 +2,13 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import About from './Pages/About/About';
+import Experts from './Pages/Home/Experts/Experts';
 import Home from './Pages/Home/Home/Home';
+import Services from './Pages/Home/Services/Services';
+import ServiceDetail from './Pages/ServiceDetail/ServiceDetail';
 import Footer from './Shared/Footer/Footer';
 import Header from './Shared/Header/Header';
+import NotFound from './Shared/NotFound/NotFound';
 
 function App() {
   return (
@@ -12,7 +16,12 @@ function App() {
       <Header></Header>
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
+        <Route path='/service/:serviceId' element={<ServiceDetail></ServiceDetail>}></Route>
         <Route path='/about' element={<About></About>}></Route>
+        <Route path='/experts' element={<Experts></Experts>}></Route>
+        <Route path='/services' element={<Services></Services>}></Route>
+        <Route path='*' element={<NotFound></NotFound>}></Route>
+
       </Routes>
       <Footer></Footer>
     </div>
