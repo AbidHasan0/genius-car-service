@@ -5,7 +5,7 @@
 
 
 
-.register-form input {
+.register-form input:not([type=checkbox]) {
    display: block;
    height: 40px;
    width: 100%;

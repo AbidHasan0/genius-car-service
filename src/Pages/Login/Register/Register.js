@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Register.css';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
@@ -10,12 +10,14 @@ import SocialLogin from '../SocialLogin/SocialLogin';
 
 
 const Register = () => {
+   const [agree, setAgree] = useState(false);
    const [
       createUserWithEmailAndPassword,
       user,
       loading,
       error,
-   ] = useCreateUserWithEmailAndPassword(auth);
+   ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
    const navigate = useNavigate();
 
@@ -32,11 +34,11 @@ const Register = () => {
       const name = event.target.name.value;
       const email = event.target.email.value;
       const password = event.target.password.value;
-      console.log(name, email, password);
+      // const agree = event.target.terms.checked;
 
-      createUserWithEmailAndPassword(email, password);
-
-
+      if (agree) {
+         createUserWithEmailAndPassword(email, password);
+      }
 
 
    }
@@ -50,8 +52,14 @@ const Register = () => {
             <input type="email" name="email" id="" placeholder='Your Email' />
             <br />
             <input type="password" name="password" id="" placeholder='Your password' />
+            <input onClick={() => setAgree(!agree)} type="checkbox" name="terms" id="terms" />
+            <label className={agree ? 'text-primary' : 'text-danger'} htmlFor="terms">Accept Terms and Condition</label>
             <br />
-            <input className='w-50 mx-auto btn btn-primary' type="submit" value="Register" />
+            <input
+               disabled={!agree}
+               className='w-50 mx-auto btn btn-primary'
+               type="submit"
+               value="Register" />
 
          </form>
          <p>Already have an account?? <Link className='text-decoration-none pe-auto' to="/login" onClick={navigateLogin}>Please Login</Link></p>
